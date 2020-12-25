@@ -82,7 +82,7 @@
               //Массив
               arg = Array.from(new Array((+vmax - vmin) + 1),(val,index)=>index + vmin);
               //Случайное число
-              var rndnum = Math.floor(Math.random() * (arg.length-1));
+              var rndnum = Math.floor(Math.random() * (arg.length));
               //Вывод числа
               document.getElementById('numran').innerHTML = arg[rndnum];
               //Копируем число в список исключений
@@ -98,7 +98,7 @@
                   //Массив
                   arg = Array.from(new Array((+vmax - vmin) + 1),(val,index)=>index + vmin);
                   //Случайное число
-                  var rndnum = Math.floor(Math.random() * (arg.length-1));
+                  var rndnum = Math.floor(Math.random() * (arg.length));
                   //Вывод числа
                   document.getElementById('numran').innerHTML = arg[rndnum];
                   //Копируем число в список исключений
@@ -111,7 +111,7 @@
                 }
               } else {
                 //Случайное число
-                var rndnum = Math.floor(Math.random() * (arg.length-1));
+                var rndnum = Math.floor(Math.random() * (arg.length));
                 //Вывод числа
                 document.getElementById('numran').innerHTML = arg[rndnum];
                 //Копируем число в список исключений
@@ -129,8 +129,8 @@
             document.getElementById("min").value = 1;
             document.getElementById("max").value = 1;
             //Очистка массивов
-            var arg = [];
-            var argout = [];
+            arg = [];
+            argout = [];
             //Очистка числа
             document.getElementById('numran').innerHTML = "";
             //Очистка поля с исключениями
