@@ -8,4 +8,4 @@
 * Есть отдельное поле, где выводится перечень чисел, которые уже выпадали.
 
 # Демо
-https://sx007.github.io/random_number_from_range/
+[Демонстрация](https://sx007.github.io/random_number_from_range/ "Demo")
