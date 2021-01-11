@@ -21,6 +21,9 @@
         font-size: 70px;
         height: 80px;
       }
+      .numend {
+        font-size: 20px;
+      }
       .btn {
         font-size: 20px;
       }
@@ -47,7 +50,10 @@
         <div class="numran" id="numran">
         </div>
         <button type="button" class="btn" onclick="RangeNum()">Случайное число</button> <button type="button" class="btn" onclick="ResetNum()">Сбросить</button>
-        <br><br>Исключенные числа
+        <br><br>
+        <div class="numend" id="numend">Осталось чисел: 1
+        </div>
+        <br>Исключенные числа
         <br>
         <textarea readonly class="numout" id="numout"></textarea>
         <script type="text/javascript">
@@ -121,6 +127,8 @@
               }
             }
             document.getElementById("numout").value = argout;
+            //Вывод количества оставшихся чисел
+            document.getElementById("numend").innerHTML = "Осталось чисел: "+ arg.length;
           }
 
           //Сброс данных
@@ -135,6 +143,8 @@
             document.getElementById('numran').innerHTML = "";
             //Очистка поля с исключениями
             document.getElementById("numout").value = "";
+            //Очистка поля с количеством оставшихся чисел
+            document.getElementById("numend").innerHTML = "Осталось чисел: " + document.getElementById("max").value;
           }
       </script>
       </div>
