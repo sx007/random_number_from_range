@@ -1,5 +1,4 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
-  "http://www.w3.org/TR/html4/strict.dtd">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
     <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -8,115 +7,102 @@
     </head>
     <body> 
     <style>
-      .content {
+        .content {
         text-align: center;
-        font-size: 26px;
-      }
-      .raz {
-        width: 4em;
+        font-size: 23px;
+        }
+        .raz {
+        width: 2em;
         height: 1.5em;
         text-align: center;
         font-size: 25px;
-      }
-      .numran {
+        }
+        .numran {
         font-size: 70px;
         height: 80px;
-      }
-      .numend {
+        }
+        .numend {
         font-size: 20px;
-      }
-      .btn {
+        }
+        .btn {
         font-size: 20px;
-      }
-      .numout {
+        }
+        .numout {
         width: 50%;
         height: 300px;
         font-size: 30px;
         text-align: center;
-      }
-      .raz::-webkit-inner-spin-button { 
+        }
+        .raz::-webkit-inner-spin-button { 
         display: none;
-      }
-      </style>
-      <div class="content">Укажите диапазон от 1 до 100<br><br>
-        от 
-        <button type="button" onclick="this.nextElementSibling.stepDown()">-</button>
-        <input type="number" min="1" max="100" value="1" class="raz" id="min">
-        <button type="button" onclick="this.previousElementSibling.stepUp()">+</button>
-        до 
-        <button type="button" onclick="this.nextElementSibling.stepDown()">-</button>
-        <input type="number" min="1" max="100" value="1" class="raz" id="max">
-        <button type="button" onclick="this.previousElementSibling.stepUp()">+</button>
-        <br><br>
-        <div class="numran" id="numran">
-        </div>
-        <button type="button" class="btn" onclick="RangeNum()">Случайное число</button> <button type="button" class="btn" onclick="ResetNum()">Сбросить</button>
-        <br><br>
-        <div class="numend" id="numend">Осталось чисел: 1
-        </div>
-        <br>Исключенные числа
-        <br>
-        <textarea readonly class="numout" id="numout"></textarea>
-        <script type="text/javascript">
-          //Значения полей при запуске страницы
-          var vmin = parseInt(document.getElementById("min").value, 10);
-          var vmax = parseInt(document.getElementById("max").value, 10);
-          //Массив с числами
-          var arg = [];
-          //Массив с исключениями
-          var argout = [];
+        }
+    </style>
+    <div class="content">Укажите диапазон от 1 до 100<br><br>
+    от 
+    <button type="button" onclick="this.nextElementSibling.stepDown()">-</button>
+    <input type="number" min="1" max="100" value="1" class="raz" id="min">
+    <button type="button" onclick="this.previousElementSibling.stepUp()">+</button>
+    до 
+    <button type="button" onclick="this.nextElementSibling.stepDown()">-</button>
+    <input type="number" min="1" max="100" value="1" class="raz" id="max">
+    <button type="button" onclick="this.previousElementSibling.stepUp()">+</button>
+    <br><br>
+    <div class="numran" id="numran">
+    </div>
+    <button type="button" class="btn" onclick="RangeNum()">Случайное число</button> <button type="button" class="btn" onclick="ResetNum()">Сбросить</button>
+    <br><br>
+    <div class="numend" id="numend">Осталось чисел: 1
+    </div>
+    <br>Исключенные числа
+    <br>
+    <textarea readonly class="numout" id="numout"></textarea>
+    <script type="text/javascript">
+        //Значения полей при запуске страницы
+        var vmin = parseInt(document.getElementById("min").value, 10);
+        var vmax = parseInt(document.getElementById("max").value, 10);
+        //Массив с числами
+        var arg = [];
+        //Массив с исключениями
+        var argout = [];
 
-          function RangeNum() {
-            //Проверяем текущее состояние значений
-            var valmin = parseInt(document.getElementById("min").value, 10);
-            var valmax = parseInt(document.getElementById("max").value, 10);
-            //Проверка на отрицательные числа
-            if (valmin < 0 || valmax < 0) {
-              return alert("Число не должно быть отрицательным");
-            }
-            //Является ли указанные числа в диапазоне числом
-            if (!Number.isInteger(valmin) || !Number.isInteger(valmax)) {
-              return alert("Диапазон указывается только целыми положительными числами");
-            }
-            //Если изменилось минимальное или максимальное число
-            if (vmin != valmin || vmax != valmax) {
-              //Если изменилось
-              //Заменяем значения
-              vmin = valmin;
-              vmax = valmax;
-              //Сбрасываем массив с исключенными числами
-              argout = [];
-              //Массив
-              arg = Array.from(new Array((+vmax - vmin) + 1),(val,index)=>index + vmin);
-              //Случайное число
-              var rndnum = Math.floor(Math.random() * (arg.length));
-              //Вывод числа
-              document.getElementById('numran').innerHTML = arg[rndnum];
-              //Копируем число в список исключений
-              argout.push(arg[rndnum]);
-              //Удаляем его из массива
-              arg.splice(rndnum, 1);
-            } else {
-              //Не изменились указанные числа
-              if (arg.length == 0) {
-                //Если массив пустой
-                if (argout.length == 0) {
-                  //Если массив с исключениями пуст
-                  //Массив
-                  arg = Array.from(new Array((+vmax - vmin) + 1),(val,index)=>index + vmin);
-                  //Случайное число
-                  var rndnum = Math.floor(Math.random() * (arg.length));
-                  //Вывод числа
-                  document.getElementById('numran').innerHTML = arg[rndnum];
-                  //Копируем число в список исключений
-                  argout.push(arg[rndnum]);
-                  //Удаляем его из массива
-                  arg.splice(rndnum, 1);
-                } else {
-                  //Исключения есть
-                  alert("Больше чисел нет");
-                }
-              } else {
+        function RangeNum() {
+        //Проверяем текущее состояние значений
+        var valmin = parseInt(document.getElementById("min").value, 10);
+        var valmax = parseInt(document.getElementById("max").value, 10);
+        //Проверка на отрицательные числа
+        if (valmin < 0 || valmax < 0) {
+            return alert("Число не должно быть отрицательным");
+        }
+        //Является ли указанные числа в диапазоне числом
+        if (!Number.isInteger(valmin) || !Number.isInteger(valmax)) {
+            return alert("Диапазон указывается только целыми положительными числами");
+        }
+        //Если изменилось минимальное или максимальное число
+        if (vmin != valmin || vmax != valmax) {
+            //Если изменилось
+            //Заменяем значения
+            vmin = valmin;
+            vmax = valmax;
+            //Сбрасываем массив с исключенными числами
+            argout = [];
+            //Массив
+            arg = Array.from(new Array((+vmax - vmin) + 1),(val,index)=>index + vmin);
+            //Случайное число
+            var rndnum = Math.floor(Math.random() * (arg.length));
+            //Вывод числа
+            document.getElementById('numran').innerHTML = arg[rndnum];
+            //Копируем число в список исключений
+            argout.push(arg[rndnum]);
+            //Удаляем его из массива
+            arg.splice(rndnum, 1);
+        } else {
+            //Не изменились указанные числа
+            if (arg.length == 0) {
+            //Если массив пустой
+            if (argout.length == 0) {
+                //Если массив с исключениями пуст
+                //Массив
+                arg = Array.from(new Array((+vmax - vmin) + 1),(val,index)=>index + vmin);
                 //Случайное число
                 var rndnum = Math.floor(Math.random() * (arg.length));
                 //Вывод числа
@@ -125,29 +111,42 @@
                 argout.push(arg[rndnum]);
                 //Удаляем его из массива
                 arg.splice(rndnum, 1);
-              }
+            } else {
+                //Исключения есть
+                alert("Больше чисел нет");
             }
-            document.getElementById("numout").value = argout;
-            //Вывод количества оставшихся чисел
-            document.getElementById("numend").innerHTML = "Осталось чисел: "+ arg.length;
-          }
+            } else {
+            //Случайное число
+            var rndnum = Math.floor(Math.random() * (arg.length));
+            //Вывод числа
+            document.getElementById('numran').innerHTML = arg[rndnum];
+            //Копируем число в список исключений
+            argout.push(arg[rndnum]);
+            //Удаляем его из массива
+            arg.splice(rndnum, 1);
+            }
+        }
+        document.getElementById("numout").value = argout;
+        //Вывод количества оставшихся чисел
+        document.getElementById("numend").innerHTML = "Осталось чисел: "+ arg.length;
+        }
 
-          //Сброс данных
-          function ResetNum() {
-            //Сброс значений минимума и максимума
-            document.getElementById("min").value = 1;
-            document.getElementById("max").value = 1;
-            //Очистка массивов
-            arg = [];
-            argout = [];
-            //Очистка числа
-            document.getElementById('numran').innerHTML = "";
-            //Очистка поля с исключениями
-            document.getElementById("numout").value = "";
-            //Очистка поля с количеством оставшихся чисел
-            document.getElementById("numend").innerHTML = "Осталось чисел: " + document.getElementById("max").value;
-          }
-      </script>
-      </div>
+        //Сброс данных
+        function ResetNum() {
+        //Сброс значений минимума и максимума
+        document.getElementById("min").value = 1;
+        document.getElementById("max").value = 1;
+        //Очистка массивов
+        arg = [];
+        argout = [];
+        //Очистка числа
+        document.getElementById('numran').innerHTML = "";
+        //Очистка поля с исключениями
+        document.getElementById("numout").value = "";
+        //Очистка поля с количеством оставшихся чисел
+        document.getElementById("numend").innerHTML = "Осталось чисел: " + document.getElementById("max").value;
+        }
+    </script>
+    </div>
     </body>
 </html>
